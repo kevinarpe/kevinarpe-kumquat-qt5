@@ -1,0 +1,17 @@
+set(SOURCE_FILES
+    ${SOURCE_FILES}
+    kabstractdatamatrix.h
+    kabstractdatatable.h
+    kabstractmodelfilter.h
+    kabstracttableheader.h
+    kautonumberedtableheader.h
+    kregexmodelfilter.cpp
+    kregexmodelfilter.h
+    krowvectordatamatrix.h
+    krowvectordatatable.h
+    ksortfilterproxymodel.cpp
+    ksortfilterproxymodel.h
+    ktablemodel.cpp
+    ktablemodel.h
+    kvectortableheader.h
+    PARENT_SCOPE)
