@@ -23,15 +23,24 @@ namespace kumquat {
 // GUI can show a sample query with all column names
 
 // public
+KSortFilterProxyModel::KSortFilterProxyModel(QObject* parent /*= nullptr*/)
+    : Base(parent)
+{ }
+
+// public virtual
+KSortFilterProxyModel::~KSortFilterProxyModel()
+{ }
+
+// public
 void
 KSortFilterProxyModel::setModelFilterPtrVec(ModelFilterPtrVec& modelFilterPtrVec) {
     _modelFilterPtrVec = std::move(modelFilterPtrVec);
 }
 
-// protected
+// protected virtual
 bool
-KSortFilterProxyModel::filterAcceptsRow(int sourceRowIndex, const QModelIndex& sourceParent)
-const {
+KSortFilterProxyModel::filterAcceptsRow(const int sourceRowIndex, const QModelIndex& sourceParent)
+const /*override*/ {
     // TODO: Impl filterAcceptsColumn() with lambda & helper method
     for (const ModelFilterPtr& modelFilterPtr : _modelFilterPtrVec) {
         if (!modelFilterPtr->filterAcceptsRow(*this, sourceRowIndex, sourceParent)) {
@@ -41,10 +50,10 @@ const {
     return true;
 }
 
-// protected
+// protected virtual
 bool
-KSortFilterProxyModel::filterAcceptsColumn(int sourceColumnIndex, const QModelIndex& sourceParent)
-const {
+KSortFilterProxyModel::filterAcceptsColumn(const int /*sourceColumnIndex*/, const QModelIndex& /*sourceParent*/)
+const /*override*/ {
     return true;
 }
 

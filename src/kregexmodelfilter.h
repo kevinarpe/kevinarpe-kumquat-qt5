@@ -24,29 +24,19 @@ public:
       _regexVec(regexVec)
     { }
 
-    virtual ~KRegexModelFilter()
+    virtual
+    ~KRegexModelFilter()
     { }
 
-    virtual bool filterAcceptsRow(const KSortFilterProxyModel& proxyModel, const int sourceRowIndex,
+    virtual bool filterAcceptsRow(const KSortFilterProxyModel& proxyModel,
+                                  const int sourceRowIndex,
                                   const QModelIndex& sourceParent)
     const override;
 
-    virtual bool filterAcceptsColumn(const KSortFilterProxyModel& proxyModel, const int sourceColumnIndex,
+    virtual bool filterAcceptsColumn(const KSortFilterProxyModel& proxyModel,
+                                     const int sourceColumnIndex,
                                      const QModelIndex& sourceParent)
     const override;
-
-protected:
-    // TODO: Ask Stack about 'QString' vs 'const QString&'
-    QString
-    getStringValue(const QAbstractItemModel& model,
-                   const int rowIndex,
-                   const int columnIndex,
-                   const QModelIndex& sourceParent)
-    const;
-
-    bool
-    hasMatch(const QString& s)
-    const;
 
 private:
     RegexVec _regexVec;

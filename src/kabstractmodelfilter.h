@@ -17,7 +17,8 @@ public:
     KAbstractModelFilter()
     { }
 
-    virtual ~KAbstractModelFilter()
+    virtual
+    ~KAbstractModelFilter()
     { }
 
     virtual bool

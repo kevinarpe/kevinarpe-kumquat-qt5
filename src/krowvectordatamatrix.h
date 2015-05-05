@@ -24,7 +24,8 @@ public:
     : Base()
     { }
 
-    virtual ~KRowVectorDataMatrix()
+    virtual
+    ~KRowVectorDataMatrix()
     { }
 
 public:

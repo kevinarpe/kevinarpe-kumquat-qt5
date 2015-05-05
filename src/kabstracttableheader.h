@@ -16,7 +16,8 @@ public:
     KAbstractTableHeader()
     { }
 
-    virtual ~KAbstractTableHeader()
+    virtual
+    ~KAbstractTableHeader()
     { }
 
     virtual const TValue&

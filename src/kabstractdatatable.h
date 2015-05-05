@@ -21,7 +21,8 @@ public:
     : Base()
     { }
 
-    virtual ~KAbstractDataTable() { }
+    virtual
+    ~KAbstractDataTable() { }
 
     virtual const TValue&
     headerData(const std::size_t index, Qt::Orientation orientation)

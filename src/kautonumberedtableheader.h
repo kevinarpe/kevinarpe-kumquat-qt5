@@ -21,7 +21,8 @@ public:
     : Base()
     { }
 
-    virtual ~KAutoNumberedTableHeader()
+    virtual
+    ~KAutoNumberedTableHeader()
     { }
 
 public:

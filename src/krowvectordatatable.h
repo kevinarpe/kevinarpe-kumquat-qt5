@@ -29,22 +29,22 @@ public:
 
 }
 
-namespace std {
-
-// Ref: http://stackoverflow.com/a/21029900/257299
-template<>
-class hash<Qt::Orientation> {
-
-public:
-    size_t
-    operator()(Qt::Orientation value)
-    const {
-        size_t x = std::hash<typename std::underlying_type<Qt::Orientation>::type>()(value);
-        return x;
-    }
-};
-
-}
+//namespace std {
+//
+//// Ref: http://stackoverflow.com/a/21029900/257299
+//template<>
+//class hash<Qt::Orientation> {
+//
+//public:
+//    size_t
+//    operator()(Qt::Orientation value)
+//    const {
+//        size_t x = std::hash<typename std::underlying_type<Qt::Orientation>::type>()(value);
+//        return x;
+//    }
+//};
+//
+//}
 
 #include <functional>
 #include <unordered_map>
@@ -72,7 +72,8 @@ public:
       _orientation_To_TableHeaderPtr_Map(_newMap(horizontalTableHeader, verticalTableHeader))
     { }
 
-    virtual ~KRowVectorDataTable()
+    virtual
+    ~KRowVectorDataTable()
     { }
 
 public:

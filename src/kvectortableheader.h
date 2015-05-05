@@ -22,7 +22,8 @@ public:
       _headerData(headerData)
     { }
 
-    virtual ~KVectorTableHeader()
+    virtual
+    ~KVectorTableHeader()
     { }
 
 public:

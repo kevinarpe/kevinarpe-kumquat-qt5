@@ -7,32 +7,15 @@
 
 namespace kumquat {
 
-// public
-bool
-KRegexModelFilter::filterAcceptsRow(const KSortFilterProxyModel& proxyModel,
-                                    const int sourceRowIndex,
-                                    const QModelIndex& sourceParent)
-const {
-    // TODO: Impl filterAcceptsColumn() using a lambda + generic helper method
-    // Only getStringValue() needs to be lambda'd.
-    const QAbstractItemModel& model = *(proxyModel.sourceModel());
-    const int columnCount = model.columnCount(sourceParent);
-    for (int columnIndex = 0 ; columnIndex < columnCount ; ++columnIndex) {
-        const QString& stringValue = getStringValue(model, sourceRowIndex, columnIndex, sourceParent);
-        if (!hasMatch(stringValue)) {
-            return false;
-        }
-    }
-    return true;
-}
+// Like 'static' for C functions (not exported: 'extern')
+namespace {
 
-// protected
+// TODO: Ask Stack about 'QString' vs 'const QString&'
 QString
-KRegexModelFilter::getStringValue(const QAbstractItemModel& model,
-                                  const int rowIndex,
-                                  const int columnIndex,
-                                  const QModelIndex& sourceParent)
-const {
+_getStringValue(const QAbstractItemModel& model,
+                const int rowIndex,
+                const int columnIndex,
+                const QModelIndex& sourceParent) {
     const QModelIndex& modelIndex = model.index(rowIndex, columnIndex, sourceParent);
     assert(modelIndex.isValid());
     // TODO: Qt::DisplayRole is default value.  Do we need to customise?  Not sure; but gut says "no".
@@ -42,11 +25,9 @@ const {
     return x;
 }
 
-// protected
 bool
-KRegexModelFilter::hasMatch(const QString& s)
-const {
-    for (const QRegExp& regex : _regexVec) {
+_hasMatch(const KRegexModelFilter::RegexVec& regexVec, const QString& s) {
+    for (const QRegExp& regex : regexVec) {
         const int matchIndex = regex.indexIn(s);
         if (-1 == matchIndex) {
             return false;
@@ -55,12 +36,39 @@ const {
     return true;
 }
 
-// public
+}  // namespace (unnamed)
+
+// public virtual
+bool
+KRegexModelFilter::filterAcceptsRow(const KSortFilterProxyModel& proxyModel,
+                                    const int sourceRowIndex,
+                                    const QModelIndex& sourceParent)
+const /*override*/ {
+    const QAbstractItemModel& model = *(proxyModel.sourceModel());
+    const int columnCount = model.columnCount(sourceParent);
+    for (int columnIndex = 0 ; columnIndex < columnCount ; ++columnIndex) {
+        const QString& stringValue = _getStringValue(model, sourceRowIndex, columnIndex, sourceParent);
+        if (!_hasMatch(_regexVec, stringValue)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+// public virtual
 bool
 KRegexModelFilter::filterAcceptsColumn(const KSortFilterProxyModel& proxyModel,
                                        const int sourceColumnIndex,
                                        const QModelIndex& sourceParent)
 const {
+    const QAbstractItemModel& model = *(proxyModel.sourceModel());
+    const int rowCount = model.rowCount(sourceParent);
+    for (int rowIndex = 0 ; rowIndex < rowCount; ++rowIndex) {
+        const QString& stringValue = _getStringValue(model, rowIndex, sourceColumnIndex, sourceParent);
+        if (!_hasMatch(_regexVec, stringValue)) {
+            return false;
+        }
+    }
     return true;
 }
 

@@ -27,6 +27,20 @@ add_subdirectory(src)
 set(SOURCE_FILES
     main.cpp
     mymodel.h
-    mymodel.cpp)
+    mymodel.cpp
+    src/kabstractdatamatrix.h
+    src/kabstractdatatable.h
+    src/kabstractmodelfilter.h
+    src/kabstracttableheader.h
+    src/kautonumberedtableheader.h
+    src/kregexmodelfilter.cpp
+    src/kregexmodelfilter.h
+    src/krowvectordatamatrix.h
+    src/krowvectordatatable.h
+    src/ksortfilterproxymodel.cpp
+    src/ksortfilterproxymodel.h
+    src/ktablemodel.cpp
+    src/ktablemodel.h
+    src/kvectortableheader.h)
 add_executable(kevinarpe_kumquat_qt5 ${SOURCE_FILES})
 target_link_libraries(kevinarpe_kumquat_qt5 Qt5::Widgets)

@@ -16,7 +16,8 @@ public:
     KAbstractDataMatrix()
     { }
 
-    virtual ~KAbstractDataMatrix()
+    virtual
+    ~KAbstractDataMatrix()
     { }
 
     virtual std::size_t

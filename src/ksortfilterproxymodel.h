@@ -11,7 +11,7 @@
 
 namespace kumquat {
 
-class KAbstractModelFilter { };
+class KAbstractModelFilter;
 
 class KSortFilterProxyModel : public QSortFilterProxyModel {
 
@@ -21,23 +21,25 @@ private:
     typedef QSortFilterProxyModel Base;
 
 public:
+    // Ref: http://stackoverflow.com/a/6089065/257299
     typedef std::unique_ptr<KAbstractModelFilter> ModelFilterPtr;
     typedef std::vector<ModelFilterPtr> ModelFilterPtrVec;
 
-    KSortFilterProxyModel(QObject* parent = nullptr)
-    : Base(parent)
-    { }
+    KSortFilterProxyModel(QObject* parent = nullptr);
+
+    virtual
+    ~KSortFilterProxyModel();
 
     void
     setModelFilterPtrVec(ModelFilterPtrVec& modelFilterPtrVec);
 
 protected:
     virtual bool
-    filterAcceptsRow(int sourceRowIndex, const QModelIndex& sourceParent)
+    filterAcceptsRow(const int sourceRowIndex, const QModelIndex& sourceParent)
     const override;
 
     virtual bool
-    filterAcceptsColumn(int sourceColumnIndex, const QModelIndex& sourceParent)
+    filterAcceptsColumn(const int sourceColumnIndex, const QModelIndex& sourceParent)
     const override;
 
 private:
