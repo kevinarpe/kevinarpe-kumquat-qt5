@@ -18,28 +18,26 @@ private:
 public:
     typedef std::vector<QRegExp> RegexVec;
 
-    KRegexModelFilter(const RegexVec& regexVec)
-    : Base(),
-      // TODO: Reject empty and invalid values
-      _regexVec(regexVec)
-    { }
+    KRegexModelFilter(const RegexVec& regexVec);
 
     virtual
     ~KRegexModelFilter()
     { }
 
-    virtual bool filterAcceptsRow(const KSortFilterProxyModel& proxyModel,
-                                  const int sourceRowIndex,
-                                  const QModelIndex& sourceParent)
+    virtual bool
+    filterAcceptsRow(const KSortFilterProxyModel& proxyModel,
+                     const int sourceRowIndex,
+                     const QModelIndex& sourceParent)
     const override;
 
-    virtual bool filterAcceptsColumn(const KSortFilterProxyModel& proxyModel,
-                                     const int sourceColumnIndex,
-                                     const QModelIndex& sourceParent)
+    virtual bool
+    filterAcceptsColumn(const KSortFilterProxyModel& proxyModel,
+                        const int sourceColumnIndex,
+                        const QModelIndex& sourceParent)
     const override;
 
 private:
-    RegexVec _regexVec;
+    const RegexVec _regexVec;
 };
 
 }  // namespace kumquat

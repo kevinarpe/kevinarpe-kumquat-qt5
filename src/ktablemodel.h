@@ -24,8 +24,9 @@ public:
     typedef KAbstractDataTable<QVariant> DataTable;
     typedef std::shared_ptr<DataTable> DataTablePtr;
     typedef std::unordered_map<int, DataTablePtr> Role_To_DataTablePtr_Map;
+    typedef std::shared_ptr<Role_To_DataTablePtr_Map> Role_To_DataTablePtr_MapPtr;
 
-    KTableModel(const Role_To_DataTablePtr_Map& map, QObject* parent = nullptr);
+    KTableModel(const Role_To_DataTablePtr_MapPtr& mapPtr, QObject* parent = nullptr);
 
     virtual
     ~KTableModel()
@@ -40,25 +41,16 @@ public:
     const override;
 
     virtual int
-    rowCount(const QModelIndex& /* parent = QModelIndex() */)
+    rowCount(const QModelIndex&  parent = QModelIndex())
     const override;
 
     virtual int
-    columnCount(const QModelIndex& /* parent = QModelIndex() */)
+    columnCount(const QModelIndex&  parent = QModelIndex())
     const override;
 
 private:
-    const Role_To_DataTablePtr_Map _roleToDataTableMap;
-    const DataTable& _dataTable0;
-
-    static const Role_To_DataTablePtr_Map&
-    _staticCheckRoleToDataTableMap(const Role_To_DataTablePtr_Map& map);
-
-    static void
-    _staticAssertSize(const int role, const std::string sizeDesc, const size_t expectedSize, const size_t actualSize);
-
-    static const DataTable&
-    _staticGetDataTable0(const Role_To_DataTablePtr_Map& map);
+    const Role_To_DataTablePtr_MapPtr _role_To_DataTablePtr_MapPtr;
+    const DataTablePtr& _dataTablePtr0;
 };
 
 }  // namespace kumquat

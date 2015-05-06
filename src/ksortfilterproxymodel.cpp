@@ -41,7 +41,6 @@ KSortFilterProxyModel::setModelFilterPtrVec(ModelFilterPtrVec& modelFilterPtrVec
 bool
 KSortFilterProxyModel::filterAcceptsRow(const int sourceRowIndex, const QModelIndex& sourceParent)
 const /*override*/ {
-    // TODO: Impl filterAcceptsColumn() with lambda & helper method
     for (const ModelFilterPtr& modelFilterPtr : _modelFilterPtrVec) {
         if (!modelFilterPtr->filterAcceptsRow(*this, sourceRowIndex, sourceParent)) {
             return false;
@@ -52,8 +51,13 @@ const /*override*/ {
 
 // protected virtual
 bool
-KSortFilterProxyModel::filterAcceptsColumn(const int /*sourceColumnIndex*/, const QModelIndex& /*sourceParent*/)
+KSortFilterProxyModel::filterAcceptsColumn(const int sourceColumnIndex, const QModelIndex& sourceParent)
 const /*override*/ {
+    for (const ModelFilterPtr& modelFilterPtr : _modelFilterPtrVec) {
+        if (!modelFilterPtr->filterAcceptsColumn(*this, sourceColumnIndex, sourceParent)) {
+            return false;
+        }
+    }
     return true;
 }
 

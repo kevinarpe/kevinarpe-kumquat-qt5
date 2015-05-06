@@ -17,16 +17,20 @@ int main(int argc, char* argv[]) {
         std::make_unique<kumquat::KVectorTableHeader<QVariant>>(std::vector<QVariant>({ "abc", "def", "ghi" }));
     KQRowVectorDataTable::TableHeaderPtr verticalTableHeader =
         std::make_unique<kumquat::KAutoNumberedTableHeader<QVariant>>();
-    KQRowVectorDataTablePtr dataTablePtr = std::make_shared<KQRowVectorDataTable>(std::move(horizontalTableHeader), std::move(verticalTableHeader));
+    KQRowVectorDataTablePtr dataTablePtr =
+        std::make_shared<KQRowVectorDataTable>(std::move(horizontalTableHeader), std::move(verticalTableHeader));
     dataTablePtr->appendRow({ 123, 456.789, "data" });
-    kumquat::KTableModel::Role_To_DataTablePtr_Map roleToDataTablePtrMap({ { Qt::DisplayRole, dataTablePtr } });
-    kumquat::KTableModel tableModel(roleToDataTablePtrMap);
+
+    kumquat::KTableModel::Role_To_DataTablePtr_MapPtr role_To_DataTablePtr_MapPtr =
+        kumquat::KTableModel::Role_To_DataTablePtr_MapPtr(
+            new kumquat::KTableModel::Role_To_DataTablePtr_Map({ { Qt::DisplayRole, dataTablePtr } }));
+    kumquat::KTableModel tableModel(role_To_DataTablePtr_MapPtr);
 
     QApplication a(argc, argv);
     QTableView tableView;
     MyModel myModel(0);
-    tableView.setModel(&myModel);
-//    tableView.setModel(&tableModel);
+//    tableView.setModel(&myModel);
+    tableView.setModel(&tableModel);
     tableView.show();
     const int exitCode = a.exec();
     return exitCode;

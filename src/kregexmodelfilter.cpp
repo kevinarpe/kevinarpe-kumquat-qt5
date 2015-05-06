@@ -36,17 +36,45 @@ _hasMatch(const KRegexModelFilter::RegexVec& regexVec, const QString& s) {
     return true;
 }
 
+const KRegexModelFilter::RegexVec&
+_checkRegexVec(const KRegexModelFilter::RegexVec& regexVec) {
+    if (regexVec.empty()) {
+        throw std::invalid_argument("Argument 'regexVec' is empty");
+    }
+
+    const std::size_t size = regexVec.size();
+    for (std::size_t i = 0 ; i < size ; ++i) {
+        const QRegExp& regex = regexVec[i];
+        if (regex.isEmpty()) {
+            throw std::invalid_argument("Argument 'regexVec[" + std::to_string(i) + "]' is an empty regex");
+        }
+        else if (!regex.isValid()) {
+            throw std::invalid_argument("Argument 'regexVec[" + std::to_string(i) + "]' is an invalid regex");
+        }
+    }
+
+    return regexVec;
+}
+
 }  // namespace (unnamed)
+
+// public
+KRegexModelFilter::
+KRegexModelFilter(const RegexVec& regexVec)
+    : Base(),
+      _regexVec(_checkRegexVec(regexVec))
+{ }
 
 // public virtual
 bool
-KRegexModelFilter::filterAcceptsRow(const KSortFilterProxyModel& proxyModel,
-                                    const int sourceRowIndex,
-                                    const QModelIndex& sourceParent)
+KRegexModelFilter::
+filterAcceptsRow(const KSortFilterProxyModel& proxyModel,
+                 const int sourceRowIndex,
+                 const QModelIndex& sourceParent)
 const /*override*/ {
     const QAbstractItemModel& model = *(proxyModel.sourceModel());
     const int columnCount = model.columnCount(sourceParent);
-    for (int columnIndex = 0 ; columnIndex < columnCount ; ++columnIndex) {
+    for (int columnIndex = 0; columnIndex < columnCount; ++columnIndex) {
         const QString& stringValue = _getStringValue(model, sourceRowIndex, columnIndex, sourceParent);
         if (!_hasMatch(_regexVec, stringValue)) {
             return false;
@@ -57,13 +85,14 @@ const /*override*/ {
 
 // public virtual
 bool
-KRegexModelFilter::filterAcceptsColumn(const KSortFilterProxyModel& proxyModel,
-                                       const int sourceColumnIndex,
-                                       const QModelIndex& sourceParent)
+KRegexModelFilter::
+filterAcceptsColumn(const KSortFilterProxyModel& proxyModel,
+                    const int sourceColumnIndex,
+                    const QModelIndex& sourceParent)
 const {
     const QAbstractItemModel& model = *(proxyModel.sourceModel());
     const int rowCount = model.rowCount(sourceParent);
-    for (int rowIndex = 0 ; rowIndex < rowCount; ++rowIndex) {
+    for (int rowIndex = 0; rowIndex < rowCount; ++rowIndex) {
         const QString& stringValue = _getStringValue(model, rowIndex, sourceColumnIndex, sourceParent);
         if (!_hasMatch(_regexVec, stringValue)) {
             return false;
