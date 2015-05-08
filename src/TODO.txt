@@ -1,0 +1,30 @@
+$ cd /usr/src/qtbase-opensource-src-5.3.2+dfsg/src/widgets
+$ vim -S ~/.vim/qt5
+
+itemviews/qstyleditemdelegate.cpp:450 -> QStyledItemDelegate::paint()
+    styles/qcommonstyle.cpp:2159 -> QCommonStyle::drawControl()
+        styles/qcommonstyle.cpp:672 -> QCommonStyle::drawPrimitive()
+    styles/qcommonstyle.cpp:2207 -> QCommonStyle::drawControl()
+        styles/qcommonstyle.cpp:927 -> QCommonStylePrivate::viewItemDrawText()
+
+Highlighting inputs:
+1) QBrush override for background -> QPainter::fillRect()
+   Hardcode (bright yellow), or allow std hilite + 25% lightness
+2) Hilite segments for each cell
+   typedef std::pair<int index, int count> HiliteSegment
+   typedef std::vector<HiliteSegment> HiliteSegmentVec
+   typedef std::unordered_map<QModelIndex, HiliteSegmentVec>
+   Might need to use a mutex to control access
+   Background thread can search visible cells
+
+Algorithm:
+* override QProxyStyle::drawControl(CE_ItemViewItem, ...)
+* QFontMetrics(QFont)::width(QString, int count = -1)
+* if hilite, paint background override
+* Maybe deal with Qt::TextElideMode (exclude elide from hilite)
+
+Need off-GUI-thread filtering.
+Put a proxy on top of KDataTable.
+Two copies (1:on-GUI and 2:off-GUI)
+Background thread always operates on off-GUI copy
+When work is complete, swap (1) and (2)
