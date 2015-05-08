@@ -11,7 +11,8 @@
 namespace kumquat {
 
 template<typename TValue>
-class KVectorTableHeader : public KAbstractTableHeader<TValue> {
+class KVectorTableHeader
+    : public KAbstractTableHeader<TValue> {
 
 private:
     typedef KAbstractTableHeader<TValue> Base;
@@ -29,10 +30,7 @@ public:
 public:
     virtual const TValue&
     data(const std::size_t index)
-    const override {
-        const TValue& x = _headerData.at(index);
-        return x;
-    }
+    const override;
 
 private:
     // Intentional: Not a const ref; copy the ctor value.
@@ -40,5 +38,7 @@ private:
 };
 
 }  // namespace kumquat
+
+#include "kvectortableheader.impl.h"
 
 #endif //KEVINARPE_KUMQUAT_QT5_KVECTORTABLEHEADER_H

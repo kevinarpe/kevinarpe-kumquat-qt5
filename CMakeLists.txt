@@ -37,6 +37,7 @@ set(SOURCE_FILES
     src/kregexmodelfilter.cpp
     src/kregexmodelfilter.h
     src/krowvectordatamatrix.h
+    src/krowvectordatamatrix.impl.h
     src/krowvectordatatable.h
     src/krowvectordatatable.impl.h
     src/ksortfilterproxymodel.cpp
@@ -44,5 +45,5 @@ set(SOURCE_FILES
     src/ktablemodel.cpp
     src/ktablemodel.h
     src/kvectortableheader.h)
-add_executable(kevinarpe_kumquat_qt5 ${SOURCE_FILES} src/kfunctional.h)
+add_executable(kevinarpe_kumquat_qt5 ${SOURCE_FILES} src/kfunctional.h src/kvectortableheader.impl.h src/knamespace.h src/knamespace.impl.h)
 target_link_libraries(kevinarpe_kumquat_qt5 Qt5::Widgets)

@@ -13,7 +13,8 @@ namespace kumquat {
 
 class KAbstractModelFilter;
 
-class KSortFilterProxyModel : public QSortFilterProxyModel {
+class KSortFilterProxyModel
+    : public QSortFilterProxyModel {
 
     Q_OBJECT
 
@@ -25,8 +26,10 @@ public:
     typedef std::unique_ptr<KAbstractModelFilter> ModelFilterPtr;
     typedef std::vector<ModelFilterPtr> ModelFilterPtrVec;
 
+    // If inline, std::unique_ptr will cause issue.
     KSortFilterProxyModel(QObject* parent = nullptr);
 
+    // If inline, std::unique_ptr will cause issue.
     virtual
     ~KSortFilterProxyModel();
 

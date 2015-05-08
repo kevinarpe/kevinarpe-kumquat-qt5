@@ -76,7 +76,8 @@ KTableModel(const Role_To_DataTablePtr_MapPtr& mapPtr, QObject* parent /*= nullp
 
 // public virtual
 QVariant
-KTableModel::data(const QModelIndex& index, int role)
+KTableModel::
+data(const QModelIndex& index, int role)
 const /*override*/ {
     if (!index.isValid()) {
         return INVALID_VALUE;
@@ -98,7 +99,8 @@ const /*override*/ {
 
 // public virtual
 QVariant
-KTableModel::headerData(int sectionIndex, Qt::Orientation orientation, int role)
+KTableModel::
+headerData(int sectionIndex, Qt::Orientation orientation, int role)
 const /*override*/ {
     auto iter = _role_To_DataTablePtr_MapPtr->find(role);
     if (iter == _role_To_DataTablePtr_MapPtr->end()) {
@@ -115,7 +117,8 @@ const /*override*/ {
 
 // public virtual
 int
-KTableModel::rowCount(const QModelIndex& /* parent = QModelIndex() */)
+KTableModel::
+rowCount(const QModelIndex& /* parent = QModelIndex() */)
 const /*override*/ {
     const std::size_t x = _dataTablePtr0->rowCount();
     const int y = int(x);
@@ -124,7 +127,8 @@ const /*override*/ {
 
 // public virtual
 int
-KTableModel::columnCount(const QModelIndex& /* parent = QModelIndex() */)
+KTableModel::
+columnCount(const QModelIndex& /* parent = QModelIndex() */)
 const /*override*/ {
     const std::size_t x = _dataTablePtr0->columnCount();
     const int y = int(x);

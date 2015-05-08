@@ -4,6 +4,7 @@
 #include "kautonumberedtableheader.h"
 #include "ktablemodel.h"
 #include "ksortfilterproxymodel.h"
+#include "knamespace.h"
 #include <QApplication>
 #include <QTableView>
 #include <iostream>

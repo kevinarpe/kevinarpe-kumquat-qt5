@@ -60,8 +60,9 @@ _checkRegexVec(const KRegexModelFilter::RegexVec& regexVec) {
 
 // public
 KRegexModelFilter::
-KRegexModelFilter(const RegexVec& regexVec)
+KRegexModelFilter(const Dimensions dim, const RegexVec& regexVec)
     : Base(),
+      _dimensions(dim),
       _regexVec(_checkRegexVec(regexVec))
 { }
 
@@ -72,6 +73,9 @@ filterAcceptsRow(const KSortFilterProxyModel& proxyModel,
                  const int sourceRowIndex,
                  const QModelIndex& sourceParent)
 const /*override*/ {
+    if (!(_dimensions & Dimension::Row)) {
+        return true;
+    }
     const QAbstractItemModel& model = *(proxyModel.sourceModel());
     const int columnCount = model.columnCount(sourceParent);
     for (int columnIndex = 0; columnIndex < columnCount; ++columnIndex) {
@@ -89,7 +93,10 @@ KRegexModelFilter::
 filterAcceptsColumn(const KSortFilterProxyModel& proxyModel,
                     const int sourceColumnIndex,
                     const QModelIndex& sourceParent)
-const {
+const /*override*/ {
+    if (!(_dimensions & Dimension::Column)) {
+        return true;
+    }
     const QAbstractItemModel& model = *(proxyModel.sourceModel());
     const int rowCount = model.rowCount(sourceParent);
     for (int rowIndex = 0; rowIndex < rowCount; ++rowIndex) {

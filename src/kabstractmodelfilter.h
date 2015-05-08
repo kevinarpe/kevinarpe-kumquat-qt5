@@ -5,6 +5,7 @@
 #ifndef KEVINARPE_KUMQUAT_QT5_KABSTRACTMODELFILTER_H
 #define KEVINARPE_KUMQUAT_QT5_KABSTRACTMODELFILTER_H
 
+#include "knamespace.h"
 #include "ksortfilterproxymodel.h"
 #include <QModelIndex>
 #include <vector>
@@ -20,6 +21,10 @@ public:
     virtual
     ~KAbstractModelFilter()
     { }
+
+    virtual Dimensions
+    dimensions()
+    const = 0;
 
     virtual bool
     filterAcceptsRow(const KSortFilterProxyModel& proxyModel,

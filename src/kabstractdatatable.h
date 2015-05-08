@@ -11,7 +11,8 @@
 namespace kumquat {
 
 template<typename TValue>
-class KAbstractDataTable : public KAbstractDataMatrix<TValue> {
+class KAbstractDataTable
+    : public KAbstractDataMatrix<TValue> {
 
 private:
     typedef KAbstractDataMatrix<TValue> Base;

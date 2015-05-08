@@ -16,7 +16,8 @@
 namespace kumquat {
 
 template<typename TValue>
-class KRowVectorDataTable : public KAbstractDataTable<TValue> {
+class KRowVectorDataTable
+    : public KAbstractDataTable<TValue> {
 
 private:
     typedef KAbstractDataTable<TValue> Base;

@@ -23,7 +23,7 @@ KRowVectorDataTable(TableHeaderPtr horizontalTableHeader,
 // (b) x& -- works
 // (c) x -- works
 // (d) x&& -- did not try
-// private
+// private static
 template<typename TValue>
 typename KRowVectorDataTable<TValue>::QtOrientation_To_TableHeaderPtr_Map
 KRowVectorDataTable<TValue>::

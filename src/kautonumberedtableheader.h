@@ -11,7 +11,8 @@
 namespace kumquat {
 
 template<typename TValue>
-class KAutoNumberedTableHeader : public KAbstractTableHeader<TValue> {
+class KAutoNumberedTableHeader
+    : public KAbstractTableHeader<TValue> {
 
 private:
     typedef KAbstractTableHeader<TValue> Base;

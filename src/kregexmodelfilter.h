@@ -10,7 +10,8 @@
 
 namespace kumquat {
 
-class KRegexModelFilter : public KAbstractModelFilter {
+class KRegexModelFilter
+    : public KAbstractModelFilter {
 
 private:
     typedef KAbstractModelFilter Base;
@@ -18,11 +19,17 @@ private:
 public:
     typedef std::vector<QRegExp> RegexVec;
 
-    KRegexModelFilter(const RegexVec& regexVec);
+    KRegexModelFilter(const Dimensions dim, const RegexVec& regexVec);
 
     virtual
     ~KRegexModelFilter()
     { }
+
+    virtual Dimensions
+    dimensions()
+    const override {
+        return _dimensions;
+    }
 
     virtual bool
     filterAcceptsRow(const KSortFilterProxyModel& proxyModel,
@@ -37,6 +44,7 @@ public:
     const override;
 
 private:
+    const Dimensions _dimensions;
     const RegexVec _regexVec;
 };
 

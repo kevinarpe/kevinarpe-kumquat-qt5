@@ -20,7 +20,7 @@ public:
     size_t
     operator()(const TEnum& value)
     const {
-        size_t x = std::hash<typename std::underlying_type<TEnum>::type>()(value);
+        const size_t x = std::hash<typename std::underlying_type<TEnum>::type>()(value);
         return x;
     }
 };

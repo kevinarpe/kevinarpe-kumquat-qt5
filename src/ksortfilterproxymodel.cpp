@@ -22,24 +22,30 @@ namespace kumquat {
 // Allow result to by queried from SQLite
 // GUI can show a sample query with all column names
 
+// If inline, std::unique_ptr will cause issue.
 // public
-KSortFilterProxyModel::KSortFilterProxyModel(QObject* parent /*= nullptr*/)
+KSortFilterProxyModel::
+KSortFilterProxyModel(QObject* parent /*= nullptr*/)
     : Base(parent)
 { }
 
+// If inline, std::unique_ptr will cause issue.
 // public virtual
-KSortFilterProxyModel::~KSortFilterProxyModel()
+KSortFilterProxyModel::
+~KSortFilterProxyModel()
 { }
 
 // public
 void
-KSortFilterProxyModel::setModelFilterPtrVec(ModelFilterPtrVec& modelFilterPtrVec) {
+KSortFilterProxyModel::
+setModelFilterPtrVec(ModelFilterPtrVec& modelFilterPtrVec) {
     _modelFilterPtrVec = std::move(modelFilterPtrVec);
 }
 
 // protected virtual
 bool
-KSortFilterProxyModel::filterAcceptsRow(const int sourceRowIndex, const QModelIndex& sourceParent)
+KSortFilterProxyModel::
+filterAcceptsRow(const int sourceRowIndex, const QModelIndex& sourceParent)
 const /*override*/ {
     for (const ModelFilterPtr& modelFilterPtr : _modelFilterPtrVec) {
         if (!modelFilterPtr->filterAcceptsRow(*this, sourceRowIndex, sourceParent)) {
@@ -51,7 +57,8 @@ const /*override*/ {
 
 // protected virtual
 bool
-KSortFilterProxyModel::filterAcceptsColumn(const int sourceColumnIndex, const QModelIndex& sourceParent)
+KSortFilterProxyModel::
+filterAcceptsColumn(const int sourceColumnIndex, const QModelIndex& sourceParent)
 const /*override*/ {
     for (const ModelFilterPtr& modelFilterPtr : _modelFilterPtrVec) {
         if (!modelFilterPtr->filterAcceptsColumn(*this, sourceColumnIndex, sourceParent)) {

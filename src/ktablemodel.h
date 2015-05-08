@@ -12,7 +12,8 @@
 
 namespace kumquat {
 
-class KTableModel : public QAbstractTableModel {
+class KTableModel
+    : public QAbstractTableModel {
 
     Q_OBJECT
 

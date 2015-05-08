@@ -11,7 +11,8 @@
 namespace kumquat {
 
 template<typename TValue>
-class KRowVectorDataMatrix : public KAbstractDataMatrix<TValue> {
+class KRowVectorDataMatrix
+    : public KAbstractDataMatrix<TValue> {
 
 private:
     typedef KAbstractDataMatrix<TValue> Base;
@@ -28,39 +29,20 @@ public:
     ~KRowVectorDataMatrix()
     { }
 
-public:
     virtual std::size_t
     rowCount()
-    const override {
-        const std::size_t x = _rowVecVec.size();
-        return x;
-    }
+    const override;
 
-public:
     virtual std::size_t
     columnCount()
-    const override {
-        const RowVec& rowVec = _rowVecVec.at(0);
-        const std::size_t x = rowVec.size();
-        return x;
-    }
+    const override;
 
-public:
     virtual const TValue&
     data(std::size_t rowIndex, std::size_t columnIndex)
-    const override {
-        const RowVec& rowVec = _rowVecVec.at(rowIndex);
-        const TValue& x = rowVec.at(columnIndex);
-        return x;
-    }
+    const override;
 
-public:
     virtual Self&
-    appendRow(const RowVec& rowVec) {
-        const RowVec rowVecCopy = RowVec(rowVec);
-        _rowVecVec.push_back(rowVecCopy);
-        return *this;
-    }
+    appendRow(const RowVec& rowVec);
 
 private:
     typedef std::vector<RowVec> _RowVecVec;
@@ -68,5 +50,7 @@ private:
 };
 
 }  // namespace kumquat
+
+#include "krowvectordatamatrix.impl.h"
 
 #endif //KEVINARPE_KUMQUAT_QT5_KROWARRAYDATAMATRIX_H

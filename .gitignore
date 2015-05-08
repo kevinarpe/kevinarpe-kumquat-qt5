@@ -33,3 +33,11 @@ Makefile*
 *.qmlproject.user
 *.qmlproject.user.*
 
+# IntelliJ
+.idea/workspace.xml
+.idea/tasks.xml
+
+# Vim
+*.sw*
+*~
+
