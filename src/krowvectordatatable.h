@@ -5,10 +5,9 @@
 #ifndef KEVINARPE_KUMQUAT_QT5_KROWVECTORDATATABLE_H
 #define KEVINARPE_KUMQUAT_QT5_KROWVECTORDATATABLE_H
 
-#include "kabstracttableheader.h"
-#include "kabstractdatatable.h"
-#include "krowvectordatamatrix.h"
-
+#include "KAbstractDataTable"
+#include "KRowVectorDataMatrix"
+#include "KAbstractTableHeader"
 #include <functional>
 #include <unordered_map>
 #include <memory>

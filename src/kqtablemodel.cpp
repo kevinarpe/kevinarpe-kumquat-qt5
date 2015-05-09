@@ -2,7 +2,7 @@
 // Created by kca on 5/2/15.
 //
 
-#include "ktablemodel.h"
+#include "KQTableModel"
 
 namespace kumquat {
 
@@ -21,8 +21,8 @@ _assertSize(const int role, const std::string sizeDesc, const size_t expectedSiz
     }
 }
 
-const KTableModel::Role_To_DataTablePtr_MapPtr&
-_checkRoleToDataTableMap(const KTableModel::Role_To_DataTablePtr_MapPtr& mapPtr) {
+const KQTableModel::Role_To_DataTablePtr_MapPtr&
+_checkRoleToDataTableMap(const KQTableModel::Role_To_DataTablePtr_MapPtr& mapPtr) {
     static const std::size_t UNSET_COUNT = std::size_t(-1);
 
     if (mapPtr->empty()) {
@@ -34,8 +34,8 @@ _checkRoleToDataTableMap(const KTableModel::Role_To_DataTablePtr_MapPtr& mapPtr)
 
     for (const auto& key_value_pair : *mapPtr) {
         const int role = key_value_pair.first;
-        const KTableModel::DataTablePtr& dataTablePtr = key_value_pair.second;
-        const KTableModel::DataTable& dataTable = *dataTablePtr;
+        const KQTableModel::DataTablePtr& dataTablePtr = key_value_pair.second;
+        const KQTableModel::DataTable& dataTable = *dataTablePtr;
 
         if (UNSET_COUNT == rowCount && UNSET_COUNT == columnCount) {
             rowCount = dataTable.rowCount();
@@ -52,10 +52,10 @@ _checkRoleToDataTableMap(const KTableModel::Role_To_DataTablePtr_MapPtr& mapPtr)
     return mapPtr;
 }
 
-const KTableModel::DataTablePtr&
-_getDataTable0(const KTableModel::Role_To_DataTablePtr_MapPtr& mapPtr) {
+const KQTableModel::DataTablePtr&
+_getDataTable0(const KQTableModel::Role_To_DataTablePtr_MapPtr& mapPtr) {
     for (const auto& key_value_pair : *mapPtr) {
-        const KTableModel::DataTablePtr& dataTablePtr = key_value_pair.second;
+        const KQTableModel::DataTablePtr& dataTablePtr = key_value_pair.second;
         return dataTablePtr;
     }
     throw std::logic_error("Unreachable code: Expected argument 'mapPtr' not to be empty");
@@ -64,11 +64,11 @@ _getDataTable0(const KTableModel::Role_To_DataTablePtr_MapPtr& mapPtr) {
 }  // namespace (unnamed)
 
 // static
-const QVariant KTableModel::INVALID_VALUE = QVariant();
+const QVariant KQTableModel::INVALID_VALUE = QVariant();
 
 // public
-KTableModel::
-KTableModel(const Role_To_DataTablePtr_MapPtr& mapPtr, QObject* parent /*= nullptr*/)
+KQTableModel::
+KQTableModel(const Role_To_DataTablePtr_MapPtr& mapPtr, QObject* parent /*= nullptr*/)
     : Base(parent),
       _role_To_DataTablePtr_MapPtr(_checkRoleToDataTableMap(mapPtr)),
       _dataTablePtr0(_getDataTable0(mapPtr))
@@ -76,7 +76,7 @@ KTableModel(const Role_To_DataTablePtr_MapPtr& mapPtr, QObject* parent /*= nullp
 
 // public virtual
 QVariant
-KTableModel::
+KQTableModel::
 data(const QModelIndex& index, int role)
 const /*override*/ {
     if (!index.isValid()) {
@@ -99,7 +99,7 @@ const /*override*/ {
 
 // public virtual
 QVariant
-KTableModel::
+KQTableModel::
 headerData(int sectionIndex, Qt::Orientation orientation, int role)
 const /*override*/ {
     auto iter = _role_To_DataTablePtr_MapPtr->find(role);
@@ -117,7 +117,7 @@ const /*override*/ {
 
 // public virtual
 int
-KTableModel::
+KQTableModel::
 rowCount(const QModelIndex& /* parent = QModelIndex() */)
 const /*override*/ {
     const std::size_t x = _dataTablePtr0->rowCount();
@@ -127,7 +127,7 @@ const /*override*/ {
 
 // public virtual
 int
-KTableModel::
+KQTableModel::
 columnCount(const QModelIndex& /* parent = QModelIndex() */)
 const /*override*/ {
     const std::size_t x = _dataTablePtr0->columnCount();

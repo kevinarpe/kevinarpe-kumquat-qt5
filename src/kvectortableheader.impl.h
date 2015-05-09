@@ -2,7 +2,7 @@
 // Created by kca on 5/9/15.
 //
 
-#include "kvectortableheader.h"
+#include "KVectorTableHeader"
 
 namespace kumquat {
 

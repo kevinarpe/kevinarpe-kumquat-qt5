@@ -21,32 +21,12 @@ set(CMAKE_AUTOMOC ON)
 #find_package(Qt5Gui)
 find_package(Qt5Widgets)
 
-include_directories(src)
-add_subdirectory(src)
+include_directories(src include)
+add_subdirectory(src include)
 
-set(SOURCE_FILES
-    main.cpp
-    mymodel.h
-    mymodel.cpp
-    src/kabstractdatamatrix.h
-    src/kabstractdatatable.h
-    src/kabstractmodelfilter.h
-    src/kabstracttableheader.h
-    src/kautonumberedtableheader.h
-    src/kautonumberedtableheader.impl.h
-    src/kfunctional.h
-    src/knamespace.h
-    src/kregexmodelfilter.cpp
-    src/kregexmodelfilter.h
-    src/krowvectordatamatrix.h
-    src/krowvectordatamatrix.impl.h
-    src/krowvectordatatable.h
-    src/krowvectordatatable.impl.h
-    src/ksortfilterproxymodel.cpp
-    src/ksortfilterproxymodel.h
-    src/ktablemodel.cpp
-    src/ktablemodel.h
-    src/kvectortableheader.h
-    src/kvectortableheader.impl.h)
+aux_source_directory(src SRC_FILES)
+aux_source_directory(include INCLUDE_FILES)
+
+set(SOURCE_FILES main.cpp mymodel.h mymodel.cpp ${SRC_FILES} ${INCLUDE_FILES})
 add_executable(kevinarpe_kumquat_qt5 ${SOURCE_FILES})
 target_link_libraries(kevinarpe_kumquat_qt5 Qt5::Widgets)

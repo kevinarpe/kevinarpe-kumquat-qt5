@@ -23,7 +23,7 @@ Algorithm:
 * if hilite, paint background override
 * Maybe deal with Qt::TextElideMode (exclude elide from hilite)
 
-Need off-GUI-thread filtering.
+Need off-GUI-thread sorting/filtering/hiliting.
 Put a proxy on top of KDataTable.
 Two copies (1:on-GUI and 2:off-GUI)
 Background thread always operates on off-GUI copy

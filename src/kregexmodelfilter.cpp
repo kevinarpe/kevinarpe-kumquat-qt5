@@ -2,8 +2,7 @@
 // Created by kca on 5/3/15.
 //
 
-#include "kregexmodelfilter.h"
-#include <cassert>
+#include "KRegexModelFilter"
 
 namespace kumquat {
 
@@ -17,7 +16,7 @@ _getStringValue(const QAbstractItemModel& model,
                 const int columnIndex,
                 const QModelIndex& sourceParent) {
     const QModelIndex& modelIndex = model.index(rowIndex, columnIndex, sourceParent);
-    assert(modelIndex.isValid());
+    Q_ASSERT(modelIndex.isValid());
     // TODO: Qt::DisplayRole is default value.  Do we need to customise?  Not sure; but gut says "no".
     const QVariant& value = model.data(modelIndex, Qt::DisplayRole);
     // TODO: Ask stackoverflow if diff between 'const QString' and 'const QString&'
@@ -69,7 +68,7 @@ KRegexModelFilter(const Dimensions dim, const RegexVec& regexVec)
 // public virtual
 bool
 KRegexModelFilter::
-filterAcceptsRow(const KSortFilterProxyModel& proxyModel,
+filterAcceptsRow(const KQSortFilterProxyModel& proxyModel,
                  const int sourceRowIndex,
                  const QModelIndex& sourceParent)
 const /*override*/ {
@@ -90,7 +89,7 @@ const /*override*/ {
 // public virtual
 bool
 KRegexModelFilter::
-filterAcceptsColumn(const KSortFilterProxyModel& proxyModel,
+filterAcceptsColumn(const KQSortFilterProxyModel& proxyModel,
                     const int sourceColumnIndex,
                     const QModelIndex& sourceParent)
 const /*override*/ {

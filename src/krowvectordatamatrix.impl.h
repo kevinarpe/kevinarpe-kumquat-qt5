@@ -2,7 +2,7 @@
 // Created by kca on 5/8/15.
 //
 
-#include "krowvectordatamatrix.h"
+#include "KRowVectorDataMatrix"
 
 namespace kumquat {
 

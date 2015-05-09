@@ -5,7 +5,7 @@
 #ifndef KEVINARPE_KUMQUAT_QT5_KABSTRACTDATATABLE_H
 #define KEVINARPE_KUMQUAT_QT5_KABSTRACTDATATABLE_H
 
-#include "kabstractdatamatrix.h"
+#include "KAbstractDataMatrix"
 #include <Qt>
 
 namespace kumquat {

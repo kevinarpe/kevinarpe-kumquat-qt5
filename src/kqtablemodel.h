@@ -5,14 +5,14 @@
 #ifndef KEVINARPE_KUMQUAT_QT5_KTABLEMODEL_H
 #define KEVINARPE_KUMQUAT_QT5_KTABLEMODEL_H
 
-#include "kabstractdatatable.h"
+#include "KAbstractDataTable"
 #include <QAbstractTableModel>
 #include <unordered_map>
 #include <memory>
 
 namespace kumquat {
 
-class KTableModel
+class KQTableModel
     : public QAbstractTableModel {
 
     Q_OBJECT
@@ -27,10 +27,10 @@ public:
     typedef std::unordered_map<int, DataTablePtr> Role_To_DataTablePtr_Map;
     typedef std::shared_ptr<Role_To_DataTablePtr_Map> Role_To_DataTablePtr_MapPtr;
 
-    KTableModel(const Role_To_DataTablePtr_MapPtr& mapPtr, QObject* parent = nullptr);
+    KQTableModel(const Role_To_DataTablePtr_MapPtr& mapPtr, QObject* parent = nullptr);
 
     virtual
-    ~KTableModel()
+    ~KQTableModel()
     { }
 
     virtual QVariant

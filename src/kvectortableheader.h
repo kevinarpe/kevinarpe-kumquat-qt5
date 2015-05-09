@@ -5,7 +5,7 @@
 #ifndef KEVINARPE_KUMQUAT_QT5_KVECTORTABLEHEADER_H
 #define KEVINARPE_KUMQUAT_QT5_KVECTORTABLEHEADER_H
 
-#include "kabstracttableheader.h"
+#include "KAbstractTableHeader"
 #include <vector>
 
 namespace kumquat {

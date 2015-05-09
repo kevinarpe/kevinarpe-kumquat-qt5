@@ -5,7 +5,7 @@
 #ifndef KEVINARPE_KUMQUAT_QT5_KREGEXMODELFILTER_H
 #define KEVINARPE_KUMQUAT_QT5_KREGEXMODELFILTER_H
 
-#include "kabstractmodelfilter.h"
+#include "KAbstractModelFilter"
 #include <QRegExp>
 
 namespace kumquat {
@@ -32,13 +32,13 @@ public:
     }
 
     virtual bool
-    filterAcceptsRow(const KSortFilterProxyModel& proxyModel,
+    filterAcceptsRow(const KQSortFilterProxyModel& proxyModel,
                      const int sourceRowIndex,
                      const QModelIndex& sourceParent)
     const override;
 
     virtual bool
-    filterAcceptsColumn(const KSortFilterProxyModel& proxyModel,
+    filterAcceptsColumn(const KQSortFilterProxyModel& proxyModel,
                         const int sourceColumnIndex,
                         const QModelIndex& sourceParent)
     const override;

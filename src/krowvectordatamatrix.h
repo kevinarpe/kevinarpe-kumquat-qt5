@@ -5,7 +5,7 @@
 #ifndef KEVINARPE_KUMQUAT_QT5_KROWARRAYDATAMATRIX_H
 #define KEVINARPE_KUMQUAT_QT5_KROWARRAYDATAMATRIX_H
 
-#include "kabstractdatamatrix.h"
+#include "KAbstractDataMatrix"
 #include <vector>
 
 namespace kumquat {

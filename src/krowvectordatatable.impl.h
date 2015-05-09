@@ -2,8 +2,8 @@
 // Created by kca on 5/2/15.
 //
 
-#include "krowvectordatatable.h"
-#include "kfunctional.h"
+#include "KRowVectorDataTable"
+#include "kfunctional"
 
 namespace kumquat {
 

@@ -2,8 +2,8 @@
 // Created by kca on 5/3/15.
 //
 
-#include "ksortfilterproxymodel.h"
-#include "kabstractmodelfilter.h"
+#include "KQSortFilterProxyModel"
+#include "KAbstractModelFilter"
 
 namespace kumquat {
 
@@ -24,27 +24,27 @@ namespace kumquat {
 
 // If inline, std::unique_ptr will cause issue.
 // public
-KSortFilterProxyModel::
-KSortFilterProxyModel(QObject* parent /*= nullptr*/)
+KQSortFilterProxyModel::
+KQSortFilterProxyModel(QObject* parent /*= nullptr*/)
     : Base(parent)
 { }
 
 // If inline, std::unique_ptr will cause issue.
 // public virtual
-KSortFilterProxyModel::
-~KSortFilterProxyModel()
+KQSortFilterProxyModel::
+~KQSortFilterProxyModel()
 { }
 
 // public
 void
-KSortFilterProxyModel::
+KQSortFilterProxyModel::
 setModelFilterPtrVec(ModelFilterPtrVec& modelFilterPtrVec) {
     _modelFilterPtrVec = std::move(modelFilterPtrVec);
 }
 
 // protected virtual
 bool
-KSortFilterProxyModel::
+KQSortFilterProxyModel::
 filterAcceptsRow(const int sourceRowIndex, const QModelIndex& sourceParent)
 const /*override*/ {
     for (const ModelFilterPtr& modelFilterPtr : _modelFilterPtrVec) {
@@ -57,7 +57,7 @@ const /*override*/ {
 
 // protected virtual
 bool
-KSortFilterProxyModel::
+KQSortFilterProxyModel::
 filterAcceptsColumn(const int sourceColumnIndex, const QModelIndex& sourceParent)
 const /*override*/ {
     for (const ModelFilterPtr& modelFilterPtr : _modelFilterPtrVec) {

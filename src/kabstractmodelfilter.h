@@ -5,8 +5,8 @@
 #ifndef KEVINARPE_KUMQUAT_QT5_KABSTRACTMODELFILTER_H
 #define KEVINARPE_KUMQUAT_QT5_KABSTRACTMODELFILTER_H
 
-#include "knamespace.h"
-#include "ksortfilterproxymodel.h"
+#include "knamespace"
+#include "KQSortFilterProxyModel"
 #include <QModelIndex>
 #include <vector>
 
@@ -27,13 +27,13 @@ public:
     const = 0;
 
     virtual bool
-    filterAcceptsRow(const KSortFilterProxyModel& proxyModel,
+    filterAcceptsRow(const KQSortFilterProxyModel& proxyModel,
                      const int sourceRowIndex,
                      const QModelIndex& sourceParent)
     const = 0;
 
     virtual bool
-    filterAcceptsColumn(const KSortFilterProxyModel& proxyModel,
+    filterAcceptsColumn(const KQSortFilterProxyModel& proxyModel,
                         const int sourceColumnIndex,
                         const QModelIndex& sourceParent)
     const = 0;
