@@ -5,17 +5,17 @@
 #ifndef KEVINARPE_KUMQUAT_QT5_KROWARRAYDATAMATRIX_H
 #define KEVINARPE_KUMQUAT_QT5_KROWARRAYDATAMATRIX_H
 
-#include "KAbstractDataMatrix"
+#include "KIDataMatrix"
 #include <vector>
 
 namespace kumquat {
 
 template<typename TValue>
 class KRowVectorDataMatrix
-    : public KAbstractDataMatrix<TValue> {
+    : public KIDataMatrix<TValue> {
 
 private:
-    typedef KAbstractDataMatrix<TValue> Base;
+    typedef KIDataMatrix<TValue> Base;
 
 public:
     typedef KRowVectorDataMatrix<TValue> Self;

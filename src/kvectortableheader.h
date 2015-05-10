@@ -5,17 +5,17 @@
 #ifndef KEVINARPE_KUMQUAT_QT5_KVECTORTABLEHEADER_H
 #define KEVINARPE_KUMQUAT_QT5_KVECTORTABLEHEADER_H
 
-#include "KAbstractTableHeader"
+#include "KITableHeader"
 #include <vector>
 
 namespace kumquat {
 
 template<typename TValue>
 class KVectorTableHeader
-    : public KAbstractTableHeader<TValue> {
+    : public KITableHeader<TValue> {
 
 private:
-    typedef KAbstractTableHeader<TValue> Base;
+    typedef KITableHeader<TValue> Base;
 
 public:
     explicit KVectorTableHeader(const std::vector<TValue>& headerData)

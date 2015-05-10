@@ -5,16 +5,16 @@
 #ifndef KEVINARPE_KUMQUAT_QT5_KREGEXMODELFILTER_H
 #define KEVINARPE_KUMQUAT_QT5_KREGEXMODELFILTER_H
 
-#include "KAbstractModelFilter"
+#include "KIModelFilter"
 #include <QRegExp>
 
 namespace kumquat {
 
 class KRegexModelFilter
-    : public KAbstractModelFilter {
+    : public KIModelFilter {
 
 private:
-    typedef KAbstractModelFilter Base;
+    typedef KIModelFilter Base;
 
 public:
     typedef std::vector<QRegExp> RegexVec;

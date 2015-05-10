@@ -5,9 +5,9 @@
 #ifndef KEVINARPE_KUMQUAT_QT5_KROWVECTORDATATABLE_H
 #define KEVINARPE_KUMQUAT_QT5_KROWVECTORDATATABLE_H
 
-#include "KAbstractDataTable"
+#include "KIDataTable"
 #include "KRowVectorDataMatrix"
-#include "KAbstractTableHeader"
+#include "KITableHeader"
 #include <functional>
 #include <unordered_map>
 #include <memory>
@@ -16,15 +16,15 @@ namespace kumquat {
 
 template<typename TValue>
 class KRowVectorDataTable
-    : public KAbstractDataTable<TValue> {
+    : public KIDataTable<TValue> {
 
 private:
-    typedef KAbstractDataTable<TValue> Base;
+    typedef KIDataTable<TValue> Base;
 
 public:
     typedef KRowVectorDataTable<TValue> Self;
     typedef typename KRowVectorDataMatrix<TValue>::RowVec RowVec;
-    typedef KAbstractTableHeader<TValue> TableHeader;
+    typedef KITableHeader<TValue> TableHeader;
     typedef std::unique_ptr<TableHeader> TableHeaderPtr;
 
     KRowVectorDataTable(TableHeaderPtr horizontalTableHeader,

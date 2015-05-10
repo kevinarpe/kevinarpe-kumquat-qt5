@@ -5,25 +5,25 @@
 #ifndef KEVINARPE_KUMQUAT_QT5_KABSTRACTDATATABLE_H
 #define KEVINARPE_KUMQUAT_QT5_KABSTRACTDATATABLE_H
 
-#include "KAbstractDataMatrix"
+#include "KIDataMatrix"
 #include <Qt>
 
 namespace kumquat {
 
 template<typename TValue>
-class KAbstractDataTable
-    : public KAbstractDataMatrix<TValue> {
+class KIDataTable
+    : public KIDataMatrix<TValue> {
 
 private:
-    typedef KAbstractDataMatrix<TValue> Base;
+    typedef KIDataMatrix<TValue> Base;
 
 public:
-    KAbstractDataTable()
+    KIDataTable()
     : Base()
     { }
 
     virtual
-    ~KAbstractDataTable() { }
+    ~KIDataTable() { }
 
     virtual const TValue&
     headerData(const std::size_t index, Qt::Orientation orientation)

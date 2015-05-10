@@ -10,14 +10,14 @@
 namespace kumquat {
 
 template<typename TValue>
-class KAbstractTableHeader {
+class KITableHeader {
 
 public:
-    KAbstractTableHeader()
+    KITableHeader()
     { }
 
     virtual
-    ~KAbstractTableHeader()
+    ~KITableHeader()
     { }
 
     virtual const TValue&

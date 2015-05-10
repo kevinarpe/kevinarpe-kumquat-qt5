@@ -11,7 +11,7 @@
 
 namespace kumquat {
 
-class KAbstractModelFilter;
+class KIModelFilter;
 
 class KQSortFilterProxyModel
     : public QSortFilterProxyModel {
@@ -23,7 +23,7 @@ private:
 
 public:
     // Ref: http://stackoverflow.com/a/6089065/257299
-    typedef std::unique_ptr<KAbstractModelFilter> ModelFilterPtr;
+    typedef std::unique_ptr<KIModelFilter> ModelFilterPtr;
     typedef std::vector<ModelFilterPtr> ModelFilterPtrVec;
 
     // If inline, std::unique_ptr will cause issue.

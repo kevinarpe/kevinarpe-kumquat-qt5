@@ -5,7 +5,7 @@
 #ifndef KEVINARPE_KUMQUAT_QT5_KTABLEMODEL_H
 #define KEVINARPE_KUMQUAT_QT5_KTABLEMODEL_H
 
-#include "KAbstractDataTable"
+#include "KIDataTable"
 #include <QAbstractTableModel>
 #include <unordered_map>
 #include <memory>
@@ -22,7 +22,7 @@ private:
     typedef QAbstractTableModel Base;
 
 public:
-    typedef KAbstractDataTable<QVariant> DataTable;
+    typedef KIDataTable<QVariant> DataTable;
     typedef std::shared_ptr<DataTable> DataTablePtr;
     typedef std::unordered_map<int, DataTablePtr> Role_To_DataTablePtr_Map;
     typedef std::shared_ptr<Role_To_DataTablePtr_Map> Role_To_DataTablePtr_MapPtr;

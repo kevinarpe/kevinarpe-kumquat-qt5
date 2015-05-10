@@ -3,7 +3,7 @@
 //
 
 #include "KQSortFilterProxyModel"
-#include "KAbstractModelFilter"
+#include "KIModelFilter"
 
 namespace kumquat {
 

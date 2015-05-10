@@ -10,14 +10,14 @@
 namespace kumquat {
 
 template<typename TValue>
-class KAbstractDataMatrix {
+class KIDataMatrix {
 
 public:
-    KAbstractDataMatrix()
+    KIDataMatrix()
     { }
 
     virtual
-    ~KAbstractDataMatrix()
+    ~KIDataMatrix()
     { }
 
     virtual std::size_t

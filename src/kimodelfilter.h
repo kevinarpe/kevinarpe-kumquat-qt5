@@ -12,14 +12,14 @@
 
 namespace kumquat {
 
-class KAbstractModelFilter {
+class KIModelFilter {
 
 public:
-    KAbstractModelFilter()
+    KIModelFilter()
     { }
 
     virtual
-    ~KAbstractModelFilter()
+    ~KIModelFilter()
     { }
 
     virtual Dimensions
