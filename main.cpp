@@ -17,12 +17,12 @@ int main(int argc, char* argv[]) {
     typedef kumquat::KRowVectorDataTable<QVariant> KQRowVectorDataTable;
     typedef std::shared_ptr<KQRowVectorDataTable> KQRowVectorDataTablePtr;
     KQRowVectorDataTable::TableHeaderPtr horizontalTableHeader =
-        std::make_unique<kumquat::KVectorTableHeader<QVariant>>(std::vector<QVariant>({ "abc", "def", "ghi" }));
+        std::make_unique<kumquat::KVectorTableHeader<QVariant>>(std::vector<QVariant>({ "Header1", "Header2", "Header3" }));
     KQRowVectorDataTable::TableHeaderPtr verticalTableHeader =
         std::make_unique<kumquat::KAutoNumberedTableHeader<QVariant>>();
     KQRowVectorDataTablePtr dataTablePtr =
         std::make_shared<KQRowVectorDataTable>(std::move(horizontalTableHeader), std::move(verticalTableHeader));
-    dataTablePtr->appendRow({ 123, 456.789, "data" });
+    dataTablePtr->appendRow({ 123, 456.789, "somedata" });
 
     kumquat::KQTableModel::Role_To_DataTablePtr_MapPtr role_To_DataTablePtr_MapPtr =
         kumquat::KQTableModel::Role_To_DataTablePtr_MapPtr(
@@ -38,9 +38,16 @@ int main(int argc, char* argv[]) {
     typedef std::shared_ptr<kumquat::KQStyledItemDelegate> KQStyledItemDelegatePtr;
     KQStyledItemDelegatePtr itemDelegatePtr(new kumquat::KQStyledItemDelegate());
     itemDelegatePtr->setBackgroundBrushHilite(QBrush(Qt::GlobalColor::yellow));
-    QModelIndex modelIndex = proxyModelPtr->index(0, 0);
     kumquat::KHiliteSegmentGroup& hiliteSegmentGroup = itemDelegatePtr->hiliteSegmentGroup();
-    hiliteSegmentGroup[modelIndex] = kumquat::KHiliteSegmentVec({ kumquat::KHiliteSegment::fromIndexAndCount(1, 1) });
+    {
+        const QModelIndex modelIndex = proxyModelPtr->index(0, 2);
+        hiliteSegmentGroup[modelIndex] =
+            kumquat::KHiliteSegmentVec(
+                {
+                    kumquat::KHiliteSegment::fromIndexAndCount(1, 1),
+                    kumquat::KHiliteSegment::fromIndexAndCount(3, 2),
+                });
+    }
 
     QApplication a(argc, argv);
     QTableView tableView;

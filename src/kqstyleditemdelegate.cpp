@@ -15,6 +15,7 @@ paint(QPainter* painter,
       const QStyleOptionViewItem& option,
       const QModelIndex& index)
 const /*override*/ {
+//    QStyledItemDelegate::paint(painter, option, index);
     // This code is 99% borrowed from QStyledItemDelegate::paint().
     Q_ASSERT(index.isValid());
 

@@ -189,7 +189,7 @@ const
     const KHiliteSegmentVec::const_iterator hiliteSegmentEnd = option->hiliteSegmentVec.cend();
     for (int i = 0; i < lineCount; ++i) {
         const QTextLine line = textLayout.lineAt(i);
-        while (hiliteSegmentEnd != hiliteSegmentIter) {
+        for ( ; hiliteSegmentEnd != hiliteSegmentIter ; ++hiliteSegmentIter) {
             const KHiliteSegment& hs = *hiliteSegmentIter;
             const int targetBegin = hs.index();
             const int targetEnd = targetBegin + hs.count();
@@ -224,15 +224,9 @@ const
                     p->fillRect(QRectF(x, y, width, height), option->backgroundBrushHilite);
                 }  // end scope
             }
-            // Prepare for next iteration
-            int targetEnd2 = targetEnd;
-            while (actualEnd >= targetEnd2) {
-                ++hiliteSegmentIter;
-                if (hiliteSegmentEnd == hiliteSegmentIter) {
-                    break;
-                }
-                const KHiliteSegment& hs2 = *hiliteSegmentIter;
-                targetEnd2 = hs2.index() + hs2.count();
+            // Hilite segment crosses two lines and may have none/partial/full match on current line.
+            if (targetEnd > actualEnd) {
+                break;
             }
         }
         if (i == elidedIndex) {
