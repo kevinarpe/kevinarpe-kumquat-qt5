@@ -29,6 +29,7 @@ _checkRoleToDataTableMap(const KQTableModel::Role_To_DataTablePtr_MapPtr& mapPtr
         throw std::invalid_argument("Map is empty");
     }
 
+    // TODO: Refactor
     std::size_t rowCount = UNSET_COUNT;
     std::size_t columnCount = UNSET_COUNT;
 
@@ -38,14 +39,14 @@ _checkRoleToDataTableMap(const KQTableModel::Role_To_DataTablePtr_MapPtr& mapPtr
         const KQTableModel::DataTable& dataTable = *dataTablePtr;
 
         if (UNSET_COUNT == rowCount && UNSET_COUNT == columnCount) {
-            rowCount = dataTable.rowCount();
-            columnCount = dataTable.columnCount();
+            rowCount = dataTable.size(Dimension::Row);
+            columnCount = dataTable.size(Dimension::Column);
         }
         else {
-            const std::size_t currRowSize = dataTable.rowCount();
+            const std::size_t currRowSize = dataTable.size(Dimension::Row);
             _assertSize(role, "rowCount", rowCount, currRowSize);
 
-            const std::size_t currColumnSize = dataTable.columnCount();
+            const std::size_t currColumnSize = dataTable.size(Dimension::Column);
             _assertSize(role, "columnCount", columnCount, currColumnSize);
         }
     }
@@ -120,7 +121,7 @@ int
 KQTableModel::
 rowCount(const QModelIndex& /* parent = QModelIndex() */)
 const /*override*/ {
-    const std::size_t x = _dataTablePtr0->rowCount();
+    const std::size_t x = _dataTablePtr0->size(Dimension::Row);
     const int y = int(x);
     return y;
 }
@@ -130,7 +131,7 @@ int
 KQTableModel::
 columnCount(const QModelIndex& /* parent = QModelIndex() */)
 const /*override*/ {
-    const std::size_t x = _dataTablePtr0->columnCount();
+    const std::size_t x = _dataTablePtr0->size(Dimension::Column);
     const int y = int(x);
     return y;
 }

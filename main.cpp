@@ -7,6 +7,8 @@
 #include "knamespace"
 #include "KQStyledItemDelegate"
 #include "KQProxyStyle"
+#include "KSortFilterProxyDataTable"
+#include "KSparseDataMatrix"
 #include <QApplication>
 #include <QTableView>
 #include <iostream>

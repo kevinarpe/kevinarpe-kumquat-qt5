@@ -12,6 +12,7 @@
 
 namespace kumquat {
 
+// TODO: Add transpose
 class KQTableModel
     : public QAbstractTableModel {
 

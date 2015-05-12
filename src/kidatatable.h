@@ -23,7 +23,8 @@ public:
     { }
 
     virtual
-    ~KIDataTable() { }
+    ~KIDataTable()
+    { }
 
     virtual const TValue&
     headerData(const std::size_t index, Qt::Orientation orientation)

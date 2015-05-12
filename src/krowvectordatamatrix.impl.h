@@ -3,6 +3,7 @@
 //
 
 #include "KRowVectorDataMatrix"
+#include <cassert>
 
 namespace kumquat {
 
@@ -10,28 +11,31 @@ namespace kumquat {
 template<typename TValue>
 std::size_t
 KRowVectorDataMatrix<TValue>::
-rowCount()
+size(Dimension dimension)
 const /*override*/ {
-    const std::size_t x = _rowVecVec.size();
-    return x;
-}
-
-// public virtual
-template<typename TValue>
-std::size_t
-KRowVectorDataMatrix<TValue>::
-columnCount()
-const /*override*/ {
-    const RowVec& rowVec = _rowVecVec.at(0);
-    const std::size_t x = rowVec.size();
-    return x;
+    switch (dimension) {
+        case Dimension::Row: {
+            const std::size_t x = _rowVecVec.size();
+            return x;
+            break;
+        }
+        case Dimension::Column: {
+            const RowVec& rowVec = _rowVecVec.at(0);
+            const std::size_t x = rowVec.size();
+            return x;
+            break;
+        }
+        default: {
+            assert(false && "Unreachable code");
+        }
+    }
 }
 
 // public virtual
 template<typename TValue>
 const TValue&
 KRowVectorDataMatrix<TValue>::
-data(std::size_t rowIndex, std::size_t columnIndex)
+data(const std::size_t rowIndex, const std::size_t columnIndex)
 const /*override*/ {
     const RowVec& rowVec = _rowVecVec.at(rowIndex);
     const TValue& x = rowVec.at(columnIndex);

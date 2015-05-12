@@ -9,7 +9,7 @@
 
 namespace kumquat {
 
-enum Dimension {
+enum class Dimension {
     Row = 0x1,
     Column = 0x2,
 };

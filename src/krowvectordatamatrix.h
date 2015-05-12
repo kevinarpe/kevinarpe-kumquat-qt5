@@ -30,21 +30,19 @@ public:
     { }
 
     virtual std::size_t
-    rowCount()
-    const override;
-
-    virtual std::size_t
-    columnCount()
+    size(Dimension dimension)
     const override;
 
     virtual const TValue&
-    data(std::size_t rowIndex, std::size_t columnIndex)
+    data(const std::size_t rowIndex, const std::size_t columnIndex)
     const override;
 
     virtual Self&
     appendRow(const RowVec& rowVec);
 
 private:
+    // TODO: Convert to use std::vector<TValue>
+    // ... where offset = (rowIndex * columnCount) + columnIndex
     typedef std::vector<RowVec> _RowVecVec;
     _RowVecVec _rowVecVec;
 };

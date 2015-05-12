@@ -35,11 +35,7 @@ public:
     { }
 
     virtual std::size_t
-    rowCount()
-    const override;
-
-    virtual std::size_t
-    columnCount()
+    size(Dimension dimension)
     const override;
 
     virtual const TValue&

@@ -42,19 +42,9 @@ _newMap(TableHeaderPtr& horizontalTableHeader,
 template<typename TValue>
 std::size_t
 KRowVectorDataTable<TValue>::
-rowCount()
+size(Dimension dimension)
 const /*override*/ {
-    const std::size_t x = _dataMatrix.rowCount();
-    return x;
-}
-
-// public virtual
-template<typename TValue>
-std::size_t
-KRowVectorDataTable<TValue>::
-columnCount()
-const /*override*/ {
-    const std::size_t x = _dataMatrix.columnCount();
+    const std::size_t x = _dataMatrix.size(dimension);
     return x;
 }
 
