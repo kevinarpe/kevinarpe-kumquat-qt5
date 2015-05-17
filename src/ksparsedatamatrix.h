@@ -5,7 +5,6 @@
 #ifndef KEVINARPE_KUMQUAT_QT5_KSPARSEDATAMATRIX_H
 #define KEVINARPE_KUMQUAT_QT5_KSPARSEDATAMATRIX_H
 
-#include "KIDataMatrix"
 #include <unordered_map>
 #include <cstddef>
 #include <cassert>

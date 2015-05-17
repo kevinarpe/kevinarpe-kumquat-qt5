@@ -7,7 +7,6 @@
 
 #include <functional>
 #include <utility>
-#include <c++/4.9/bits/stl_pair.h>
 
 namespace std {
 

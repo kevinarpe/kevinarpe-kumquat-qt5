@@ -5,9 +5,10 @@
 #ifndef KEVINARPE_KUMQUAT_QT5_KDATATABLEDIMENSIONCOMPAREFUNCTOR_H
 #define KEVINARPE_KUMQUAT_QT5_KDATATABLEDIMENSIONCOMPAREFUNCTOR_H
 
-#include "KIDataTable"
+#include "KDataTable"
 #include "KDataTableDataFunctor"
 #include "knamespace"
+#include "kdatatable.h"
 #include <Qt>
 #include <vector>
 #include <stdexcept>
@@ -26,12 +27,16 @@ template<
     typename TValue,
     Dimension _dimension,
     typename TValueCompareFunctor,
+    typename TDataTable = KDataTable<TValue>,
     typename TDataTableDataFunctor = KDataTableDataFunctor<_dimension, TValue>
 >
 class KDataTableDimensionCompareFunctor {
 
 public:
     static constexpr const Dimension DIMENSION = _dimension;
+
+    typedef TDataTable DataTable;
+    typedef const DataTable* const DataTablePtr;
 
     /**
      * @param indexVec
@@ -47,8 +52,9 @@ public:
         return _dimension;
     }
 
+    // TODO: Convert to const ref is possible (due to #include limitations)
     bool
-    operator()(const KIDataTable<TValue>* const dataTable,
+    operator()(DataTablePtr dataTablePtr,
                const std::size_t indexA,
                const std::size_t indexB)
     const;

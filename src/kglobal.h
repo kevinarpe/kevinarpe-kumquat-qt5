@@ -12,10 +12,14 @@
  *
  * To be used in assignment statements, such as constructor initialiser lists.
  *
+ * If you see the GCC error:
+ * "second operand to the conditional operator is of type ‘void’, but the third operand is neither a throw-expression nor of type ‘void’"
+ * ... the cause is likely an invalid (inverted) predicate.
+ *
  * @param value
  *        value to test and return, e.g., vec (std::vector<>)
  * @param predicateResult
- *        value to be boolean tested as not false, e.g., {@code vec.empty()}
+ *        value to be boolean tested as not false, e.g., {@code !vec.empty()}
  * @param message
  *        string literal for assert message, e.g., {@code "Argument 'vec' is empty"}
  *

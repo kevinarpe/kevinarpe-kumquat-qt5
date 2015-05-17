@@ -1,5 +1,4 @@
 #include "mymodel.h"
-#include "KRowVectorDataTable"
 #include "KVectorTableHeader"
 #include "KAutoNumberedTableHeader"
 #include "KQTableModel"
@@ -7,8 +6,9 @@
 #include "knamespace"
 #include "KQStyledItemDelegate"
 #include "KQProxyStyle"
-#include "KSortFilterProxyDataTable"
 #include "KSparseDataMatrix"
+#include "KDataTable"
+#include "KColumnCount"
 #include <QApplication>
 #include <QTableView>
 #include <iostream>
@@ -16,15 +16,20 @@
 int main(int argc, char* argv[]) {
     std::cout << "Hello, World!: " << __cplusplus << std::endl;
 
-    typedef kumquat::KRowVectorDataTable<QVariant> KQRowVectorDataTable;
-    typedef std::shared_ptr<KQRowVectorDataTable> KQRowVectorDataTablePtr;
-    KQRowVectorDataTable::TableHeaderPtr horizontalTableHeader =
+    typedef typename kumquat::KDataTable<QVariant>::DataMatrix DataMatrix;
+    typedef typename kumquat::KDataTable<QVariant>::DataMatrixPtr DataMatrixPtr;
+    typedef kumquat::KDataTable<QVariant> KDataTable;
+    typedef std::shared_ptr<KDataTable> KDataTablePtr;
+    const KDataTable::TableHeaderPtr horizontalTableHeaderPtr =
         std::make_unique<kumquat::KVectorTableHeader<QVariant>>(std::vector<QVariant>({ "Header1", "Header2", "Header3" }));
-    KQRowVectorDataTable::TableHeaderPtr verticalTableHeader =
+    const KDataTable::TableHeaderPtr verticalTableHeaderPtr =
         std::make_unique<kumquat::KAutoNumberedTableHeader<QVariant>>();
-    KQRowVectorDataTablePtr dataTablePtr =
-        std::make_shared<KQRowVectorDataTable>(std::move(horizontalTableHeader), std::move(verticalTableHeader));
-    dataTablePtr->appendRow({ 123, 456.789, "somedata" });
+    DataMatrixPtr dataMatrixPtr =
+        std::make_unique<kumquat::KRowDataMatrix<QVariant>>(kumquat::KColumnCount(3));
+
+    KDataTablePtr dataTablePtr =
+        std::make_shared<KDataTable>(std::move(horizontalTableHeaderPtr), std::move(verticalTableHeaderPtr));
+    dataTablePtr->append({ 123, 456.789, "somedata" });
 
     kumquat::KQTableModel::Role_To_DataTablePtr_MapPtr role_To_DataTablePtr_MapPtr =
         kumquat::KQTableModel::Role_To_DataTablePtr_MapPtr(
@@ -50,6 +55,18 @@ int main(int argc, char* argv[]) {
                     kumquat::KHiliteSegment::fromIndexAndCount(3, 2),
                 });
     }
+
+
+    typedef kumquat::KDataTable<QVariant> DataTable;
+
+    DataTable::DataMatrixPtr dataMatrixPtr = std::make_unique<DataTable::DataMatrix>(kumquat::KColumnCount(3));
+    std::vector<QVariant> rowVec { "abc123", "def456", "ghi789" };
+    dataMatrixPtr->append(rowVec.begin(), rowVec.end());
+
+    DataTable z(
+        std::move(horizontalTableHeaderPtr),
+        std::move(verticalTableHeaderPtr),
+        std::move(dataMatrixPtr));
 
     QApplication a(argc, argv);
     QTableView tableView;

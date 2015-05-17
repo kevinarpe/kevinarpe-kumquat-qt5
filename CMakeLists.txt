@@ -8,7 +8,8 @@ if(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
     # Remove -Wshadow
     # ^^^^ Ref: https://lkml.org/lkml/2006/11/28/253
     set(CMAKE_CXX_COMPILER g++-5)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic -Wall -Wextra -Wcast-align -Wcast-qual -Wctor-dtor-privacy -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op -Wmissing-declarations -Wmissing-include-dirs -Wnoexcept -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wsign-conversion -Wsign-promo -Wstrict-null-sentinel -Wstrict-overflow=5 -Wswitch-default -Wundef -Werror -Wno-unused")
+    # -Wsign-promo
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic -Wall -Wextra -Wcast-align -Wcast-qual -Wctor-dtor-privacy -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op -Wmissing-declarations -Wmissing-include-dirs -Wnoexcept -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wsign-conversion -Wstrict-null-sentinel -Wstrict-overflow=5 -Wswitch-default -Wundef -Werror -Wno-unused")
     set(CMAKE_CXX_FLAGS_DEBUG "-O0 -ggdb3")
 endif()
 
@@ -29,5 +30,5 @@ aux_source_directory(src SRC_FILES)
 aux_source_directory(include INCLUDE_FILES)
 
 set(SOURCE_FILES main.cpp mymodel.h mymodel.cpp ${SRC_FILES} ${INCLUDE_FILES})
-add_executable(kevinarpe_kumquat_qt5 ${SOURCE_FILES})
+add_executable(kevinarpe_kumquat_qt5 ${SOURCE_FILES} src/kcolumncount.cpp src/kcolumncount.h)
 target_link_libraries(kevinarpe_kumquat_qt5 Qt5::Widgets)
