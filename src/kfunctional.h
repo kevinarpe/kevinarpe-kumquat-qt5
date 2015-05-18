@@ -32,7 +32,7 @@ public:
     }
 };
 
-}
+}  // namespace std
 
 namespace kumquat {
 
@@ -56,6 +56,6 @@ public:
 
 };
 
-}
+}  // namespace kumquat
 
 #endif //KEVINARPE_KUMQUAT_QT5_KFUNCTIONAL_H

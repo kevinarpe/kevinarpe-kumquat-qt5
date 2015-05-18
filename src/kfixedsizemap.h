@@ -352,7 +352,7 @@ public:
     operator[](const key_type& key) {
         const iterator iter = find(key);
         if (iter == _pairVec.end()) {
-            kabort(_keyNotExistMessage(key));
+            KABORT(_keyNotExistMessage(key));
         }
         mapped_type& x = iter->second;
         return x;
@@ -364,7 +364,7 @@ public:
     const {
         const const_iterator iter = find(key);
         if (iter == _pairVec.end()) {
-            kabort(_keyNotExistMessage(key));
+            KABORT(_keyNotExistMessage(key));
         }
         const mapped_type& x = iter->second;
         return x;

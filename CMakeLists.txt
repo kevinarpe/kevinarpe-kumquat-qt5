@@ -30,5 +30,5 @@ aux_source_directory(src SRC_FILES)
 aux_source_directory(include INCLUDE_FILES)
 
 set(SOURCE_FILES main.cpp mymodel.h mymodel.cpp ${SRC_FILES} ${INCLUDE_FILES})
-add_executable(kevinarpe_kumquat_qt5 ${SOURCE_FILES} src/kcolumncount.cpp src/kcolumncount.h)
+add_executable(kevinarpe_kumquat_qt5 ${SOURCE_FILES})
 target_link_libraries(kevinarpe_kumquat_qt5 Qt5::Widgets)
