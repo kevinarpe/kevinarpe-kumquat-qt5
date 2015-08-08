@@ -71,6 +71,14 @@
 
 #if defined(BACKWARD_SYSTEM_LINUX)
 
+#	if defined(BACKWARD_HAS_UNWIND) && BACKWARD_HAS_UNWIND != 1
+#		error "If BACKWARD_HAS_UNWIND is defined, it must be 1 (one)"
+#	endif
+
+#	if defined(BACKWARD_HAS_BACKTRACE) && BACKWARD_HAS_BACKTRACE != 1
+#		error "If BACKWARD_HAS_BACKTRACE is defined, it must be 1 (one)"
+#	endif
+
 // On linux, backtrace can back-trace or "walk" the stack using the following
 // libraries:
 //

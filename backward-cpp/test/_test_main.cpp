@@ -31,6 +31,11 @@
 test::test_registry_t test::test_registry;
 using namespace test;
 
+// Resolve GCC warning:
+// no previous declaration for ‘bool run_test(test::TestBase&)’
+// [-Werror=missing-declarations]
+bool run_test(TestBase& test);
+
 bool run_test(TestBase& test) {
 	printf("-- running test case: %s\n", test.name);
 

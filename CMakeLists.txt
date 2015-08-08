@@ -7,7 +7,8 @@ if(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
     # Ref: http://stackoverflow.com/questions/5088460/flags-to-enable-thorough-and-verbose-g-warnings
     # Remove -Wshadow
     # ^^^^ Ref: https://lkml.org/lkml/2006/11/28/253
-    set(CMAKE_CXX_COMPILER g++-5)
+#    set(CMAKE_CXX_COMPILER g++-5)
+    set(CMAKE_CXX_COMPILER /usr/lib/ccache/g++-5)
     # -Wsign-promo
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic -Wall -Wextra -Wcast-align -Wcast-qual -Wctor-dtor-privacy -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op -Wmissing-declarations -Wmissing-include-dirs -Wnoexcept -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wsign-conversion -Wstrict-null-sentinel -Wstrict-overflow=5 -Wswitch-default -Wundef -Werror -Wno-unused")
     set(CMAKE_CXX_FLAGS_DEBUG "-O0 -ggdb3")
@@ -24,11 +25,17 @@ set(CMAKE_AUTOMOC ON)
 find_package(Qt5Widgets)
 
 include_directories(src include)
-add_subdirectory(src include)
+#add_subdirectory(src include backward-cpp)
+add_subdirectory(src)
+add_subdirectory(include)
+#add_subdirectory(backward-cpp)
 
 aux_source_directory(src SRC_FILES)
 aux_source_directory(include INCLUDE_FILES)
 
 set(SOURCE_FILES main.cpp mymodel.h mymodel.cpp ${SRC_FILES} ${INCLUDE_FILES})
+#add_executable(kevinarpe_kumquat_qt5 ${SOURCE_FILES} ${backward_ENABLE})
 add_executable(kevinarpe_kumquat_qt5 ${SOURCE_FILES})
-target_link_libraries(kevinarpe_kumquat_qt5 Qt5::Widgets)
+target_link_libraries(kevinarpe_kumquat_qt5 Qt5::Widgets bfd dw)
+
+#add_backward(kevinarpe_kumquat_qt5)

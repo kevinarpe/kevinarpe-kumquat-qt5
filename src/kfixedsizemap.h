@@ -76,15 +76,16 @@ private:
         bool
         operator()(const key_type& key, const value_type& pair)
         const {
-            const bool x = _key_compare(key, pair.first);
+            const TKey& pair_key = pair.first;
+            const bool x = _key_compare(key, pair_key);
             return x;
         }
 
-        // TODO: Not sure if I actually need this.
         bool
-        operator()( const value_type& pair, const key_type& key)
+        operator()(const value_type& pair, const key_type& key)
         const {
-            const bool x = _key_compare(key, pair.first);
+            const TKey& pair_key = pair.first;
+            const bool x = _key_compare(pair_key, key);
             return x;
         }
 
@@ -427,7 +428,9 @@ public:
     const_iterator
     find(const key_type& key)
     const {
-        const const_iterator x = kbinary_search(_pairVec.begin(), _pairVec.end(), key, _key_and_value_compare);
+        const const_iterator begin = _pairVec.begin();
+        const const_iterator end = _pairVec.end();
+        const const_iterator x = kbinary_search(begin, end, key, _key_and_value_compare);
         return x;
     }
 

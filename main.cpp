@@ -9,6 +9,8 @@
 #include "KSparseDataMatrix"
 #include "KDataTable"
 #include "KColumnCount"
+//#define BACKWARD_HAS_DW 1
+//#include "backward.hpp"
 #include <QApplication>
 #include <QTableView>
 #include <iostream>
