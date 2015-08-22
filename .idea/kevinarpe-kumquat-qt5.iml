@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="CPP_MODULE" version="4">
   <component name="NewModuleRootManager">
-    <content url="file://$USER_HOME$/.clion11/system/cmake/generated/ed560e03/ed560e03/Debug/kevinarpe_kumquat_qt5_automoc.cpp">
-      <sourceFolder url="file://$USER_HOME$/.clion11/system/cmake/generated/ed560e03/ed560e03/Debug/kevinarpe_kumquat_qt5_automoc.cpp" isTestSource="false" />
-    </content>
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/include/CMakeLists.txt" isTestSource="false" />
@@ -40,42 +37,6 @@
       <sourceFolder url="file://$MODULE_DIR$/src/kstringmatch.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/kstringmatch.h" isTestSource="false" />
     </content>
-    <content url="file:///usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreConfig.cmake">
-      <sourceFolder url="file:///usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreConfig.cmake" isTestSource="false" />
-    </content>
-    <content url="file:///usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreConfigExtras.cmake">
-      <sourceFolder url="file:///usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreConfigExtras.cmake" isTestSource="false" />
-    </content>
-    <content url="file:///usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreConfigExtrasMkspecDir.cmake">
-      <sourceFolder url="file:///usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreConfigExtrasMkspecDir.cmake" isTestSource="false" />
-    </content>
-    <content url="file:///usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreConfigVersion.cmake">
-      <sourceFolder url="file:///usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreConfigVersion.cmake" isTestSource="false" />
-    </content>
-    <content url="file:///usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreMacros.cmake">
-      <sourceFolder url="file:///usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreMacros.cmake" isTestSource="false" />
-    </content>
-    <content url="file:///usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5GuiConfig.cmake">
-      <sourceFolder url="file:///usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5GuiConfig.cmake" isTestSource="false" />
-    </content>
-    <content url="file:///usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5GuiConfigExtras.cmake">
-      <sourceFolder url="file:///usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5GuiConfigExtras.cmake" isTestSource="false" />
-    </content>
-    <content url="file:///usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5GuiConfigVersion.cmake">
-      <sourceFolder url="file:///usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5GuiConfigVersion.cmake" isTestSource="false" />
-    </content>
-    <content url="file:///usr/lib/x86_64-linux-gnu/cmake/Qt5Widgets/Qt5WidgetsConfig.cmake">
-      <sourceFolder url="file:///usr/lib/x86_64-linux-gnu/cmake/Qt5Widgets/Qt5WidgetsConfig.cmake" isTestSource="false" />
-    </content>
-    <content url="file:///usr/lib/x86_64-linux-gnu/cmake/Qt5Widgets/Qt5WidgetsConfigExtras.cmake">
-      <sourceFolder url="file:///usr/lib/x86_64-linux-gnu/cmake/Qt5Widgets/Qt5WidgetsConfigExtras.cmake" isTestSource="false" />
-    </content>
-    <content url="file:///usr/lib/x86_64-linux-gnu/cmake/Qt5Widgets/Qt5WidgetsConfigVersion.cmake">
-      <sourceFolder url="file:///usr/lib/x86_64-linux-gnu/cmake/Qt5Widgets/Qt5WidgetsConfigVersion.cmake" isTestSource="false" />
-    </content>
-    <content url="file:///usr/lib/x86_64-linux-gnu/cmake/Qt5Widgets/Qt5WidgetsMacros.cmake">
-      <sourceFolder url="file:///usr/lib/x86_64-linux-gnu/cmake/Qt5Widgets/Qt5WidgetsMacros.cmake" isTestSource="false" />
-    </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
@@ -106,9 +67,6 @@
           <root url="file:///usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64" />
           <root url="file:///usr/local/include" />
         </SOURCES>
-        <excluded>
-          <root url="file://$USER_HOME$/.clion11/system/cmake/generated/ed560e03/ed560e03/Debug/kevinarpe_kumquat_qt5_automoc.cpp" />
-        </excluded>
       </library>
     </orderEntry>
   </component>

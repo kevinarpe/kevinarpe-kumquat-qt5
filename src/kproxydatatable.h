@@ -15,6 +15,13 @@
 
 namespace kumquat {
 
+
+// Sample matches classes: QVariant
+// template TValue
+// {
+//     QString toString() const;
+// };
+
 template<
     typename TValue                   = QVariant,
     typename TDataTable               = KDataTable<TValue>,

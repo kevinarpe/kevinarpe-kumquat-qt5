@@ -130,7 +130,8 @@ template<
     typename TDimensionCompareFunctor,
     typename TStringMatcher
 >
-typename KProxyDataTable<TValue, TDataTable, TString, TStringDataTable, TDimensionCompareFunctor, TStringMatcher>::MatrixIndex_KStringMatchVec_PairVec
+typename KProxyDataTable<TValue, TDataTable, TString, TStringDataTable, TDimensionCompareFunctor, TStringMatcher>::
+MatrixIndex_KStringMatchVec_PairVec
 KProxyDataTable<TValue, TDataTable, TString, TStringDataTable, TDimensionCompareFunctor, TStringMatcher>::
 search(TStringMatcher m) {
     MatrixIndex_KStringMatchVec_PairVec out;
@@ -143,7 +144,7 @@ search(TStringMatcher m) {
 
     KStringMatchVec vec;
 
-    const std::size_t rowCount = _stringDataTable->size(Dimension::Row);
+    const std::size_t rowCount    = _stringDataTable->size(Dimension::Row);
     const std::size_t columnCount = _stringDataTable->size(Dimension::Column);
 
     for (std::size_t rowIndex = 0 ; rowIndex < rowCount ; ++rowIndex) {
@@ -154,7 +155,7 @@ search(TStringMatcher m) {
 
             if (m.match(value, &vec)) {
                 filterResultRowVec[rowIndex] = _FilterResult::Include;
-                filterResultRowVec[columnIndex] = _FilterResult::Include;
+                filterResultColumnVec[columnIndex] = _FilterResult::Include;
                 out.emplace_back(KMatrixIndex(rowIndex, columnIndex), vec);
             }
         }
@@ -202,7 +203,8 @@ _updateSortFilterIndexMap(const Dimension d) {
     const const_iterator2 filterResultEndIter = filterResultVec.end();
 
     for (   ; sortIndexEndIter != sortIndexIter && filterResultEndIter != filterResultIter
-        ; ++sortIndexIter, ++filterResultIter) {
+            ; ++sortIndexIter, ++filterResultIter) {
+
         if (_FilterResult::Include == *filterResultIter) {
             sortFilterIndexVec.push_back(*sortIndexIter);
         }
@@ -276,7 +278,7 @@ typename KProxyDataTable<TValue, TDataTable, TString, TStringDataTable, TDimensi
 KProxyDataTable<TValue, TDataTable, TString, TStringDataTable, TDimensionCompareFunctor, TStringMatcher>::
 _resetIndexVec(_IndexVec& v) {
     // Ref: http://stackoverflow.com/a/11965746/257299
-    // Fill from 0 to rowCount-1
+    // Fill vector with values from 0 to rowCount-1
     std::iota(v.begin(), v.end(), 0);
     return v;
 }
@@ -345,8 +347,8 @@ sort(TDimensionCompareFunctor fn) {
 
     std::sort(indexVec.begin(),
               indexVec.end(),
-        // Ref: https://software.intel.com/sites/products/documentation/doclib/iss/2013/compiler/cpp-lin/GUID-835983D0-9779-422E-B339-0205358CAACC.htm
-        // [&] capture all necessary variables (compareFunctor) by reference.
+              // Ref: https://software.intel.com/sites/products/documentation/doclib/iss/2013/compiler/cpp-lin/GUID-835983D0-9779-422E-B339-0205358CAACC.htm
+              // [&] capture all necessary variables (compareFunctor) by reference.
               [&](const std::size_t rowIndexA, const std::size_t rowIndexB) -> bool {
                   // Be careful: Might be slow to add extra function call.
                   // Trade-off: I don't like having a big, messy lambda.
